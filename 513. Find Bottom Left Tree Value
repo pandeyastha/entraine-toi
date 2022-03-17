@@ -12,9 +12,9 @@
 class Solution {
 public:
     int flag=0;
-    int value=INT_MIN;
+    int value=INT_MIN;         //global declare
     void check(TreeNode* root, int &h,int level)
-    {
+    {                                                  
         if(root==NULL) return ;
         if(level==h-1 && flag==0 && value==INT_MIN)
         {
