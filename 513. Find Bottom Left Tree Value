@@ -11,32 +11,25 @@
  */
 class Solution {
 public:
-    int flag=0;
-    int value=INT_MIN;         //global declare
-    void check(TreeNode* root, int &h,int level)
-    {                                                  
+    
+    int value=INT_MIN;
+    void check(TreeNode* root, int &maxdepth,int level)
+    {
         if(root==NULL) return ;
-        if(level==h-1 && flag==0 && value==INT_MIN)
-        {
-            flag=!flag;
-            value=root->val;
-        }
-        check(root->left,h,level+1);
-        check(root->right,h,level+1);
+        check(root->left,maxdepth,level+1);
+        check(root->right,maxdepth,level+1);
+        if(level>maxdepth)
+        {maxdepth=level;
+        value=root->val;}
         return;
         
     }
-    int height(TreeNode* root)
-    {
-        if(root==NULL) return 0;
-        return 1+max(height(root->left),height(root->right));
-    }
+    
     int findBottomLeftValue(TreeNode* root) {
         if(root==NULL )return 0;
         if(root->left==NULL && root->right==NULL )return root->val;
-        
-        int h= height(root);
-        check(root,h,0);
+        int  maxdepth=-1;
+        check(root,maxdepth,0);
         return value;
     }
 };
