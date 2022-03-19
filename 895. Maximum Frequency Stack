@@ -1,0 +1,21 @@
+FreqStack() {
+        
+    }
+    unordered_map<int ,int>freq;
+    unordered_map<int,stack<int>> mp;
+    int max=0;
+    void push(int val) {
+        freq[val]++;
+        if(freq[val]>max)max=freq[val];
+        mp[freq[val]].push(val);
+        
+    }
+    
+    int pop() {
+        int count=max;
+        int reject=mp[count].top();
+        mp[count].pop();
+        freq[reject]--;
+        if(mp[count].size()==0)max--;
+        return reject;
+    }
