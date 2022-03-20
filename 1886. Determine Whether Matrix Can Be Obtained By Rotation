@@ -1,0 +1,18 @@
+bool findRotation(vector<vector<int>>& mat, vector<vector<int>>& target) {
+        vector<bool>c(true,4);
+        int n=mat.size();
+        for(int i=0;i<mat.size();i++)
+        {
+            for(int j=0;j<mat[0].size();j++)
+            {
+                if(mat[i][j]!=target[i][j])c[0]=false;                            //for 0 deg
+                 if(mat[i][j]!=target[n-j-1][i])c[1]=false;                         // for 90 deg rot
+                 if(mat[i][j]!=target[n-1-i][n-1-j])c[2]=false;                    // for 180 deg rot;
+                 if(mat[i][j]!=target[j][n-1-i])c[3]=false;                         //for 270 deg rot;
+            }
+                
+        }
+        return c[0]||c[1]||c[2]||c[3];                                       //if any true return true
+       
+        
+    }
